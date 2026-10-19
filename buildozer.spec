@@ -28,7 +28,7 @@ android.permissions = INTERNET
 android.archs = arm64-v8a
 
 # (list) Requirements
-requirements = python3==3.11.5,kivy
+requirements = python3=3.11.5,kivy
 
 # --- CONFIGURACIÓN ESTABLE DEL SDK ---
 android.api = 33
