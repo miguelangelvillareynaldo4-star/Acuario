@@ -35,4 +35,4 @@ android.api = 33
 android.minapi = 24
 android.ndk = 25b
 andride.ndk_api =24
-android.accept_sdk_license = truet
+android.accept_sdk_license = true
