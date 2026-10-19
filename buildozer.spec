@@ -1,38 +1,22 @@
 [app]
-
-# (str) Title of your application
 title = AcuarioApp
-
-# (str) Package name
 package.name = acuarioapp
-
-# (str) Package domain (needed for android packaging)
 package.domain = org.acuario
-
-# (str) Source file where the .py files exist
 source.dir = .
-
-# (list) Source files to include (let it empty to include all files)
-source.include_exts = py,png,jpg,kv,atlas
-
-# (list) Application version
+source.include_exts = py,png,jpg,kv,atlas,json
 version = 1.0
-
-# (list) Supported orientations
 orientation = portrait
+requirements = python3,kivy
 
-# (list) Permissions
+[buildozer]
+log_level = 2
+
+[app:android]
 android.permissions = INTERNET
-
-# (str) Supported architectures
 android.archs = arm64-v8a
-
-# (list) Requirements
-requirements = python3=3.11.5,kivy
-
-# --- CONFIGURACIÓN ESTABLE DEL SDK ---
+p4a.bootstrap = sdl2
 android.api = 33
 android.minapi = 24
 android.ndk = 25b
-andride.ndk_api =24
-android.accept_sdk_license = true
+android.ndk_api = 24
+android.accept_sdk_license_agreement = True
