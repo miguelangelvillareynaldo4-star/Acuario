@@ -18,11 +18,7 @@ android.build_tools_version = 33.0.2
 android.accept_sdk_license_agreement = True
 p4a.branch = v2024.01.21
 p4a.bootstrap = sdl2
-p4a.fork = kivy
-p4a.local_recipes =
 
 [buildozer]
 log_level = 1
 warn_on_root = 1
-
-[app:android:permissions]
