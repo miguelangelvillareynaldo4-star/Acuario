@@ -54,7 +54,9 @@ jobs:
       - name: Compilar APK con Buildozer
         run: |
           export PATH=$HOME/.local/bin:$PATH
-          buildozer -v android debug
+          rm -rf ~/.buildozer/android/plataform/android
+          rm -rf .buildozer 
+          buildozer android debug
 
       - name: Guardar APK como Artefacto
         uses: actions/upload-artifact@v4
