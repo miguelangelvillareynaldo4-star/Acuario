@@ -49,7 +49,7 @@ jobs:
           echo "$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$HOME/.local/bin" >> $GITHUB_PATH
           sdkmanager --version
           yes | sdkmanager --licenses || true
-          sdkmanager "build-tools;33.0.3" "platforms;android-33" "platform-tools" "ndk;28c"
+          sdkmanager "build-tools;33.0.3" "platforms;android-33" "platform-tools" 
 
       - name: Compilar APK con Buildozer
         run: |
