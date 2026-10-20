@@ -27,8 +27,7 @@ jobs:
           pip install --upgrade pip
           pip install --user cython==0.29.37
           pip install --user buildozer 
-          pip install --user download-26.2.1-py3-none-any.mhl
-     
+        
       - name: Instalar Android SDK Command-line Tools y Licencias
         run: |
           mkdir -p $HOME/.buildozer/android/platform/android-sdk/cmdline-tools/latest
