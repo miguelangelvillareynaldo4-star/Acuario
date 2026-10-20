@@ -11,7 +11,7 @@ android.api = 33
 android.minapi = 21
 android.ndk = 25b
 android.ndk_api = 21
-p4a.branch = stable
+p4a.branch = master
 android.accept_sdk_license_agreement = True
 
 [buildozer]
