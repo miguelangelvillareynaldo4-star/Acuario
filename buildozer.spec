@@ -22,7 +22,7 @@ p4a.fork = kivy
 p4a.local_recipes =
 
 [buildozer]
-log_level = 2
+log_level = 1
 warn_on_root = 1
 
 [app:android:permissions]
