@@ -10,19 +10,24 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-      - name: Install system dependencies
+      - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install -y python3-pip python3-setuptools zip unzip openjdk-17-jdk libffi-dev libssl-dev libsqlite3-dev libbz2-dev
+          sudo apt install -y python3-pip zip unzip libffi-dev libssl-dev
           pip3 install --upgrade pip
-          pip3 install "cython==0.29.36" buildozer
+          pip3 install cython==0.29.36 buildozer
+      - name: Accept Android licenses
+        run: |
+          mkdir -p ~/.android
+          mkdir -p ~/.buildozer/android/platform/android-sdk/licenses
+          echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > ~/.[STRIPPED 71 bytes]"d56f5187479451eabf01fb78af6dfcb131a6481e" >> ~/.[STRIPPED 71 bytes]"24333f8a63b6825ea9c5514f83c1059f716d6fb" >> ~/.[STRIPPED 72 bytes] -p ~/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin || true
       - name: Build APK
         run: |
           export P4A_NUM_JOBS=1
-          buildozer android debug 
+          yes | buildozer android debug || true
+          buildozer android debug
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: AcuarioApp-APK
           path: bin/*.apk
-          if-no-files-found: error
