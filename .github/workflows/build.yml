@@ -19,15 +19,13 @@ jobs:
       - name: Build APK
         run: |
           export P4A_NUM_JOBS=1
-          # 1er intento baja el SDK (va a fallar pero baja el sdkmanager)
           buildozer android debug || true
-          # 2do aceptamos licencias del SDK que acaba de bajar
-          SDKMANAGER=$(find ~/.buildozer -name sdkmanager -type f | head -1)
-          echo "Encontrado sdkmanager en: $SDKMANAGER"
+          SDKMANAGER=$(find $HOME/.buildozer -name sdkmanager -type f | head -1)
+          echo "SDKMANAGER en $SDKMANAGER"
           yes | $SDKMANAGER --licenses || true
-          mkdir -p ~/.buildozer/android/platform/android-sdk/licenses
-          echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > ~/.[STRIPPED 71 bytes]"d56f5187479451eabf01fb78af6dfcb131a6481e" >> ~/.[STRIPPED 71 bytes]"24333f8a63b6825ea9c5514f83c1059f716d6fb" >> ~/.[STRIPPED 67 bytes]
-          # 3er intento ya sí compila completo
+          $SDKMANAGER --install "build-tools;33.0.2" "build-tools;37.0.0" "platform-tools" || true
+          mkdir -p $HOME/.buildozer/android/platform/android-sdk/licenses
+          echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > $HOME/.[STRIPPED 71 bytes]"d56f5187479451eabf01fb78af6dfcb131a6481e" >> $HOME/.[STRIPPED 71 bytes]"24333f8a63b6825ea9c5514f83c1059f716d6fb" >> $HOME/.[STRIPPED 69 bytes] $HOME/.buildozer/android/platform/android-sdk/build-tools/
           buildozer android debug
       - name: Upload APK
         uses: actions/upload-artifact@v4
