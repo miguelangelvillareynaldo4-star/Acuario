@@ -10,22 +10,24 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-      - name: Install dependencies
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+      - name: Install Build-Tools
         run: |
-          sudo apt update
-          sudo apt install -y python3-pip zip unzip libffi-dev libssl-dev
+          sdkmanager --install "build-tools;33.0.2" "build-tools;37.0.0" "platform-tools" "platforms;android-33"
+          sdkmanager --licenses || true
+          mkdir -p $HOME/.buildozer/android/platform/
+          rm -rf $HOME/.buildozer/android/platform/android-sdk
+          ln -sfn $ANDROID_HOME $HOME/.buildozer/android/platform/android-sdk
+          ls $ANDROID_HOME/build-tools/
+          ls $ANDROID_HOME/build-tools/37.0.0/ | grep aidl
+      - name: Install Python deps
+        run: |
           pip3 install --upgrade pip
           pip3 install cython==0.29.36 buildozer
       - name: Build APK
         run: |
           export P4A_NUM_JOBS=1
-          buildozer android debug || true
-          SDKMANAGER=$(find $HOME/.buildozer -name sdkmanager -type f | head -1)
-          echo "SDKMANAGER en $SDKMANAGER"
-          yes | $SDKMANAGER --licenses || true
-          $SDKMANAGER --install "build-tools;33.0.2" "build-tools;37.0.0" "platform-tools" || true
-          mkdir -p $HOME/.buildozer/android/platform/android-sdk/licenses
-          echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > $HOME/.[STRIPPED 71 bytes]"d56f5187479451eabf01fb78af6dfcb131a6481e" >> $HOME/.[STRIPPED 71 bytes]"24333f8a63b6825ea9c5514f83c1059f716d6fb" >> $HOME/.[STRIPPED 69 bytes] $HOME/.buildozer/android/platform/android-sdk/build-tools/
           buildozer android debug
       - name: Upload APK
         uses: actions/upload-artifact@v4
