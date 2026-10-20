@@ -19,5 +19,5 @@ android.api = 33
 android.minapi = 24
 android.ndk = 25b
 android.ndk_api = 24
-android.build_tools_version = 33.0.3
+p4a.build_tools_version = 33.0.3
 android.accept_sdk_license_agreement = True
