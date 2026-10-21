@@ -11,6 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 90
 
+    env:
+      ANDROID_HOME: /home/runner/.buildozer/android/platform/android-sdk
+      ANDROID_SDK_ROOT: /home/runner/.buildozer/android/platform/android-sdk
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -51,13 +55,19 @@ jobs:
           python -m pip install --upgrade pip setuptools wheel virtualenv
           python -m pip install cython buildozer
 
+      - name: Accept Android SDK licenses
+        run: |
+          mkdir -p "$ANDROID_HOME/licenses"
+          echo "24333f8a63b6825e9c5..." > "$ANDROID_HOME/licenses/android-sdk-license"
+          echo "d975..." > "$ANDROID_HOME/licenses/android-sdk-preview-license"
+
       - name: Clean previous build
         run: |
           buildozer android clean || true
 
       - name: Build APK
         run: |
-          buildozer android debug
+          yes | buildozer android debug
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
