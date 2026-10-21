@@ -9,7 +9,7 @@ on:
 jobs:
   android-build:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 120
 
     env:
       ANDROID_HOME: /home/runner/.buildozer/android/platform/android-sdk
@@ -55,11 +55,25 @@ jobs:
           python -m pip install --upgrade pip setuptools wheel virtualenv
           python -m pip install cython buildozer
 
-      - name: Accept Android SDK licenses
+      - name: Prepare Android SDK command-line tools
         run: |
-          mkdir -p "$ANDROID_HOME/licenses"
-          echo "24333f8a63b6825e9c5..." > "$ANDROID_HOME/licenses/android-sdk-license"
-          echo "d975..." > "$ANDROID_HOME/licenses/android-sdk-preview-license"
+          mkdir -p "$ANDROID_HOME"
+          mkdir -p "$ANDROID_HOME/cmdline-tools"
+          cd /tmp
+          curl -L -o commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
+          unzip -q commandlinetools.zip -d "$ANDROID_HOME/cmdline-tools"
+          if [ -d "$ANDROID_HOME/cmdline-tools/cmdline-tools" ]; then
+            mv "$ANDROID_HOME/cmdline-tools/cmdline-tools" "$ANDROID_HOME/cmdline-tools/latest"
+          fi
+
+      - name: Install Android SDK packages
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_HOME" --licenses
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_HOME" \
+            "platform-tools" \
+            "platforms;android-34" \
+            "build-tools;34.0.0" \
+            "cmdline-tools;latest"
 
       - name: Clean previous build
         run: |
@@ -67,7 +81,7 @@ jobs:
 
       - name: Build APK
         run: |
-          yes | buildozer android debug
+          buildozer android debug
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
