@@ -44,8 +44,7 @@ jobs:
             liblzma-dev \
             llvm \
             libgl1 \
-            libglvnd-dev \
-            python3-distutils
+            libglvnd-dev
 
       - name: Install Buildozer
         run: |
