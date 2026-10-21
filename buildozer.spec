@@ -1,49 +1,30 @@
 [app]
 
-# Title of your application
 title = AcuarioApp
-
-# Package name
 package.name = acuarioapp
-
-# Package domain
 package.domain = com.aquarium.app
 
-# Where the source code is
 source.dir = .
-
-# Files to pack
 source.include_exts = py,png,jpg,jpeg,kv,atlas
-
-# Target platform
 platform = android
-
-# App orientation
 orientation = portrait
 
-# Build logs
 log_level = 2
 
-# Android API levels
 android.api = 34
 android.minapi = 21
 android.ndk = 25b
-
-# Permissions needed for camera/photos
-android.permissions = CAMERA,READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE,INTERNET
-
-# AndroidX support
-android.enable_androidx = True
-
-# Architecture
+android.ndk_path = /home/runner/.buildozer/android/platform/android-ndk-r25b
+android.sdk_path = /home/runner/.buildozer/android/platform/android-sdk
 android.archs = arm64-v8a
+android.permissions = CAMERA,READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE,INTERNET
+android.enable_androidx = True
+android.gradle_dependencies = com.google.android.material:material:1.11.0
 
-# Required Python packages
-requirements = python3,kivy==2.3.1,kivymd==1.1.1,pillow,plyer
+requirements = python3,kivy==2.3.1,kivymd==2.0.0rc4,pillow,plyer
 
-# Versioning
 version = 0.1.0
 android.numeric_version = 1
-
-# Debug build
 debug = True
+
+p4a.branch = master
