@@ -19,7 +19,6 @@ android.sdk_path = /home/runner/.buildozer/android/platform/android-sdk
 android.archs = arm64-v8a
 android.permissions = CAMERA,READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE,INTERNET
 android.enable_androidx = True
-android.gradle_dependencies = com.google.android.material:material:1.11.0
 
 requirements = python3,kivy==2.3.1,kivymd==2.0.0rc4,pillow,plyer
 
