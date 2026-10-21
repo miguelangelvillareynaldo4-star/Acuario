@@ -1,21 +1,25 @@
-rom __future__ import annotations
+from __future__ import annotations
 
 import shutil
 from datetime import datetime
 from pathlib import Path
 
 from kivy.lang import Builder
+from kivy.uix.image import Image
 from kivy.uix.screenmanager import Screen, ScreenManager
 from PIL import Image as PILImage, ImageOps
+
 from kivymd.app import MDApp
 from kivymd.uix.button import MDFloatingActionButton
+from kivymd.uix.card import MDCard
 from kivymd.uix.filemanager import MDFileManager
-from kivymd.uix.list import OneLineListItem
+from kivymd.uix.label import MDLabel
+from kivymd.uix.list import MDList, OneLineListItem
+from kivymd.uix.toolbar import MDTopAppBar
+
 
 Builder.load_string(
     """
-#:import os os
-
 <DashboardScreen>:
     BoxLayout:
         orientation: "vertical"
