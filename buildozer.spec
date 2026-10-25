@@ -17,10 +17,10 @@ android.ndk = 25b
 android.ndk_path = /home/runner/.buildozer/android/platform/android-ndk-r25b
 android.sdk_path = /home/runner/.buildozer/android/platform/android-sdk
 android.archs = arm64-v8a
-android.permissions = CAMERA,READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE,INTERNET
+android.permissions = CAMERA,READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE,INTERNET,AUDIO,IMAGES,RECORD_MEDIA
 android.enable_androidx = True
 
-requirements = python3,kivy==2.3.0,kivymd==1.2.0,pillow,plyer
+requirements = python3,kivy,kivymd,plyer,pillow
 
 version = 0.1.0
 android.numeric_version = 1
