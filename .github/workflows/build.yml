@@ -81,9 +81,12 @@ jobs:
         run: |
           buildozer android debug
 
+            - name: Find APK
+          run: find .buildozer -name "*.apk" -type f
+
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: acuarioapp-debug-apk
-          path: .buildozer/android/platform/build-arm64-v8a/dists/*/bin/*.apk
+          path: .buildozer/**/*.apk
           if-no-files-found: error
