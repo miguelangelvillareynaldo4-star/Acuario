@@ -26,4 +26,4 @@ version = 0.1.0
 android.numeric_version = 1
 debug = True
 
-p4a.branch = master
+p4a.branch = v2024.01.21
