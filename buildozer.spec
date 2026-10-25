@@ -20,7 +20,7 @@ android.archs = arm64-v8a
 android.permissions = CAMERA,READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE,INTERNET
 android.enable_androidx = True
 
-requirements = python3,kivy==2.3.1,pillow,plyer
+requirements = python3,kivy==2.3.0,kivymd==1.2.0,pillow,plyer
 
 version = 0.1.0
 android.numeric_version = 1
