@@ -1,7 +1,6 @@
 from kivy.app import App
 from kivy.core.window import Window
 Window.softinput_mode = 'below_target'
-
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.uix.button import Button
@@ -24,14 +23,15 @@ class ChatApp(App):
         root.add_widget(scroll)
         self.add_ai("Hola! Soy tu asistente. Preguntame lo que quieras.")
 
-        bottom = BoxLayout(size_hint_y=None, height=60, padding=5, spacing=5)
-        btn_plus = Button(text="+", size_hint_x=None, width=50)
+        # ABAJO COMO TU ME DIJISTE
+        bottom = BoxLayout(size_hint_y=None, height=70, padding=8, spacing=8)
+        btn_plus = Button(text="+", size_hint=(None, None), size=(50, 50))
         btn_plus.bind(on_release=lambda x: self.pick_photo())
-        btn_mic = Button(text="🎤", size_hint_x=None, width=50)
+        btn_mic = Button(text="MIC", size_hint=(None, None), size=(50, 50))
         btn_mic.bind(on_release=lambda x: self.voice_input())
-        self.input_field = TextInput(hint_text="Responder...", multiline=False)
+        self.input_field = TextInput(hint_text="Responder...", multiline=False, size_hint_y=None, height=50, font_size=18)
         self.input_field.bind(on_text_validate=lambda x: self.send_message())
-        btn_send = Button(text="➤", size_hint_x=None, width=50)
+        btn_send = Button(text=">", size_hint=(None, None), size=(50, 50))
         btn_send.bind(on_release=lambda x: self.send_message())
         bottom.add_widget(btn_plus)
         bottom.add_widget(btn_mic)
@@ -51,18 +51,31 @@ class ChatApp(App):
         lbl.bind(texture_size=lambda *x: setattr(lbl, 'height', lbl.texture_size[1]+10))
         self.chat_box.add_widget(lbl)
 
+    def get_answer(self, txt):
+        t = txt.lower()
+        if "hola" in t or "que puedes" in t:
+            return "Hola! Puedo ayudarte con lo que sea, preguntame y te respondo."
+        if "como estas" in t:
+            return "Estoy bien, y tu?"
+        if "gracias" in t:
+            return "De nada!"
+        return "Te entendi: " + txt + ". Dime un poco mas para ayudarte mejor."
+
     def send_message(self):
         txt = self.input_field.text.strip()
         if not txt: return
         self.add_user(txt)
         self.input_field.text = ""
-        self.add_ai(f"Entendido! Me escribiste: '{txt}'.")
+        self.add_ai(self.get_answer(txt))
 
     def voice_input(self):
-        self.add_ai("Te estoy escuchando... habla ahora.")
+        self.add_ai("Te escucho...")
 
     def pick_photo(self):
-        filechooser.open_file(on_selection=self.photo_selected, filters=["*.jpg","*.png"])
+        try:
+            filechooser.open_file(on_selection=self.photo_selected)
+        except:
+            self.add_ai("Dale permiso en Ajustes > Fotos.")
 
     def photo_selected(self, sel):
         if sel:
