@@ -16,7 +16,7 @@ class ChatApp(App):
         # ARRIBA IGUAL QUE TU FOTO
         top = BoxLayout(size_hint_y=None, height=50, spacing=10)
         top.add_widget(Button(text="=", size_hint=(None, None), size=(45, 45)))
-        top.add_widget(Label(text="Meta AI", bold=True, font_size=22, halign='left', size_hint_x=1))
+        top.add_widget(Label(text="Acuario", bold=True, font_size=22, halign='left', size_hint_x=1))
         top.add_widget(Button(text="O", size_hint=(None, None), size=(45, 45)))
         root.add_widget(top)
 
@@ -89,7 +89,7 @@ class ChatApp(App):
         t = txt.lower()
         if "hola" in t: return "Hola mi hermano! Que bueno verte por aqui. Dime que quieres saber hoy?"
         if "que puedes" in t: return "Puedo crear imagenes, contarte la historia de hoy y buscarte cosas gratis para hacer, igual que en la foto que me mandaste."
-        return "Buena pregunta. Me preguntaste: '" + txt + "'. Cuentame un poco mas y te respondo completo, como Meta AI."
+        return "Buena pregunta. Me preguntaste: '" + txt + "'. Cuentame un poco mas y te respondo completo, como Acuario."
 
     def send_message(self):
         txt = self.input_field.text.strip()
