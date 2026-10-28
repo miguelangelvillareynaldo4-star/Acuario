@@ -1,6 +1,6 @@
 [app]
 
-title = AcuarioApp
+title = Acuario
 package.name = acuarioapp
 package.domain = com.aquarium.app
 
