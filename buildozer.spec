@@ -21,7 +21,7 @@ android.permissions = CAMERA,READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE,INTERN
 android.window_softinput_mode = adjustResize
 android.enable_androidx = True
 
-requirements = python3,kivy,plyer,pillow
+requirements = python3,kivy,plyer,pillow,requests
 
 version = 0.1.0
 android.numeric_version = 1
