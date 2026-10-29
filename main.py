@@ -1,3 +1,4 @@
+import requests
 from kivy.app import App
 from kivy.core.window import Window
 Window.softinput_mode = 'below_target'
