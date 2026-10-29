@@ -15,7 +15,7 @@ from plyer import filechooser
 Window.softinput_mode = 'below_target'
 
 # PEGA AQUI TU DIRECCION WEB DE APPS SCRIPT
-APPS_SCRIPT_URL = "PEGA_AQUI_TU_URL_DE_APPS_SCRIPT"
+APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbypM4Ajj3FlDiNjQuS_aisCjRagizkG-64qmbBRM5cqtbkgtjUtAgkA6gXjAWvXrjTnIQ/exec"
 
 
 class ChatApp(App):
