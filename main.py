@@ -255,7 +255,6 @@ class ChatApp(App):
             timeout=45
         )
 
-        response.raise_for_status()
         data = response.json()
 
         if data.get("status") != "ok":
