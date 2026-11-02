@@ -258,7 +258,7 @@ class ChatApp(App):
         response.raise_for_status()
         data = response.json()
 
-        if not data.get("ok"):
+        if data.get("status") != "ok":
             raise Exception(
                 data.get("error", "Erro ao consultar Gemini")
             )
