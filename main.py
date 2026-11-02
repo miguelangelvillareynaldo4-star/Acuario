@@ -15,7 +15,7 @@ from plyer import filechooser
 Window.softinput_mode = 'below_target'
 
 
-APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwdOhEXfsQKWLmG_P-9tbI9lEzaUoXKCbk-MlbpxiOUhi77X8Q9eG7AFxg2vEIs4evUrw/exec"
+APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzIvrLqzb2IbHDBNnGqqREI9z8gMsctnWACXfVwH588cMi0MWrxAA3cJuXaXEsU8MK1Jw/exec"
 
 
 class ChatApp(App):
@@ -256,8 +256,8 @@ class ChatApp(App):
         )
 
         data = response.json()
-
-        if data.get("status") != "ok":
+        # Validamos si la respuesta fue exitosa según el Apps Script
+        if not data.get("ok"):
             raise Exception(
                 data.get("error", "Erro ao consultar Gemini")
             )
